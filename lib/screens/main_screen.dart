@@ -21,25 +21,37 @@ class MainScreenState extends State {
   }
 
   @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Rick And Morty Chatroom')),
-        body:
-        ListView.builder(
+        body: ListView.builder(
             padding: const EdgeInsets.all(8),
             itemCount: characters.length,
             itemBuilder: (BuildContext context, int index) {
-              return Container(
-                  height: 150,
-                  color: Colors.cyan,
-                  child: Center(child:
-                  Text(characters[index].name),
-                  )
-
+              return Card(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.person),
+                      title: Text(characters[index].name),
+                      subtitle: Text(characters[index].location),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        const SizedBox(width: 8),
+                        TextButton(
+                          child: const Text('Start Chat'),
+                          onPressed: () {/* ... */},
+                        ),
+                        const SizedBox(width: 8),
+                      ],
+                    ),
+                  ],
+                ),
               );
-            }
-        )
-    );
+            }));
   }
 
   void getCharactersFromApi() {

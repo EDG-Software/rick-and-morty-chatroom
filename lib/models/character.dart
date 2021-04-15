@@ -12,7 +12,7 @@ class Character {
     name = json['name'];
     status = json['status'];
     gender = json['gender'];
-    location = json['location.name'];
+    location = json['location']['name'];
     image = json['image'];
   }
 

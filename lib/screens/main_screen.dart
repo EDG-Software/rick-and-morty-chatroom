@@ -21,17 +21,24 @@ class MainScreenState extends State {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     return Scaffold(
-      appBar: AppBar(title: Text('Rick And Morty Chatroom')),
-      body: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: ListView.builder(
+        appBar: AppBar(title: Text('Rick And Morty Chatroom')),
+        body:
+        ListView.builder(
+            padding: const EdgeInsets.all(8),
             itemCount: characters.length,
-            itemBuilder: (context, index) {
-              return Text(characters[index].name);
-            },
-          )),
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                  height: 150,
+                  color: Colors.cyan,
+                  child: Center(child:
+                  Text(characters[index].name),
+                  )
+
+              );
+            }
+        )
     );
   }
 

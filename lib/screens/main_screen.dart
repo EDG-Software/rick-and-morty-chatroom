@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_chatroom/data/api/character_api.dart';
-import 'package:rick_and_morty_chatroom/models/character.dart';
+import 'package:rick_and_morty_chatroom/data/api/location_api.dart';
+import 'package:rick_and_morty_chatroom/models/location.dart';
+import 'package:rick_and_morty_chatroom/screens/chat_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -12,11 +13,11 @@ class MainScreen extends StatefulWidget {
 }
 
 class MainScreenState extends State {
-  List<Character> characters = <Character>[];
+  List<Location> locations = <Location>[];
 
   @override
   void initState() {
-    getCharactersFromApi();
+    getLocationsFromApi();
     super.initState();
   }
 
@@ -26,16 +27,16 @@ class MainScreenState extends State {
         appBar: AppBar(title: Text('Rick And Morty Chatroom')),
         body: ListView.builder(
             padding: const EdgeInsets.all(8),
-            itemCount: characters.length,
+            itemCount: locations.length,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     ListTile(
-                      leading: Icon(Icons.person),
-                      title: Text(characters[index].name),
-                      subtitle: Text(characters[index].location),
+                      leading: Icon(Icons.public),
+                      title: Text(locations[index].name),
+                      subtitle: Text(locations[index].type),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -43,7 +44,13 @@ class MainScreenState extends State {
                         const SizedBox(width: 8),
                         TextButton(
                           child: const Text('Start Chat'),
-                          onPressed: () {/* ... */},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChatScreen(locations[index])));
+                          },
                         ),
                         const SizedBox(width: 8),
                       ],
@@ -54,12 +61,12 @@ class MainScreenState extends State {
             }));
   }
 
-  void getCharactersFromApi() {
-    CharacterApi.getCharacters().then((response) {
+  void getLocationsFromApi() {
+    LocationApi.getLocations().then((response) {
       setState(() {
         List<dynamic> list = json.decode(response.body)["results"];
-        this.characters =
-            list.map((character) => Character.fromJson(character)).toList();
+        this.locations =
+            list.map((location) => Location.fromJson(location)).toList();
       });
     });
   }

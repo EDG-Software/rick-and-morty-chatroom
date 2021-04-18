@@ -36,16 +36,34 @@ class ChatScreenState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(location.name),
+          title: Text(
+              location.name + ' (' + characters.length.toString() + ' users)'),
         ),
-        body: ListView.builder(
-            itemCount: characters.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Text(characters[index].name);
-            }));
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: <Widget>[
+              Text(
+                'Users in ' + location.name,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              new Expanded(
+                child: ListView.builder(
+                    itemCount: characters.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Text(characters[index].name);
+                    }),
+              ),
+            ],
+          ),
+        ));
   }
 
   void getCharacterByLocation(Location location) {
+    if (location.residents.length == 0) return null;
     List characterIds = location.residents
         .map((el) =>
             el.toString().split('/')[el.toString().split('/').length - 1])

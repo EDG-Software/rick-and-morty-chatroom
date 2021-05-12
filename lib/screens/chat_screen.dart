@@ -36,26 +36,46 @@ class ChatScreenState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-              location.name + ' (' + characters.length.toString() + ' users)'),
+          title: Text(location.name +
+              ' (' +
+              characters.length.toString() +
+              ' characters)'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: <Widget>[
               Text(
-                'Users in ' + location.name,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
+                'Select character from ' + location.name + ' and join chat.',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               SizedBox(
                 height: 30.0,
               ),
               new Expanded(
-                child: ListView.builder(
-                    itemCount: characters.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Text(characters[index].name);
-                    }),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 3 / 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20),
+                  itemCount: characters.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                        child: Column(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.network(
+                            characters[index].image,
+                            width: 100,
+                          ),
+                        ),
+                        Text(characters[index].name)
+                      ],
+                    ));
+                  },
+                ),
               ),
             ],
           ),

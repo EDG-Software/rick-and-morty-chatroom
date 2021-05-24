@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty_chatroom/data/api/location_api.dart';
 import 'package:rick_and_morty_chatroom/models/location.dart';
-import 'package:rick_and_morty_chatroom/screens/chat_screen.dart';
+import 'package:rick_and_morty_chatroom/screens/character_select_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -48,8 +48,8 @@ class MainScreenState extends State {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        ChatScreen(locations[index])));
+                                    builder: (context) => CharacterSelectScreen(
+                                        locations[index])));
                           },
                         ),
                         const SizedBox(width: 8),

@@ -71,7 +71,10 @@ class ChatScreenState extends State {
                             width: 100,
                           ),
                         ),
-                        Text(characters[index].name)
+                        Text(
+                          characters[index].name,
+                          overflow: TextOverflow.ellipsis,
+                        )
                       ],
                     ));
                   },

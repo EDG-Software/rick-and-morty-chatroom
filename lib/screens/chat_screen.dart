@@ -30,14 +30,25 @@ class ChatScreenState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Rick And Morty Chatroom')),
+      appBar: AppBar(title: Text(location.name + " Chat Room")),
       body: Container(
-        child: Column(
-          children: [
-            Text("Chat Ekranına hoşgeldiniz,"),
-            Text(character.name),
-            Text("Burası " + location.name)
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Welcome to the Chat Screen, " + character.name,
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900),
+                    textAlign: TextAlign.center),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text("This is " + location.name),
+              )
+            ],
+          ),
         ),
       ),
     );

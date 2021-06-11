@@ -1,16 +1,17 @@
 # rick_and_morty_chatroom
 
-A new Flutter project.
+A new Flutter learning project.
+Rick and Morty Chat Room is chat app for R&M fans. There are chat rooms from R&M worlds. You can choose character from this worlds and start chatting other peoples.
 
-## Getting Started
+Thanks to [Rick And Morty API](https://rickandmortyapi.com/)
 
-This project is a starting point for a Flutter application.
+## Screens
 
-A few resources to get you started if this is your first Flutter project:
+### Main Screen
+<img src="./screenshots/main_screen.png" alt="Main Screen" width="300"/>
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### Character Select Screen
+<img src="./screenshots/character_select_screen.png" alt="Character Select Screen" width="300"/>
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Chat Screen (WIP)
+<img src="./screenshots/chat_screen.png" alt="Chat Screen" width="300"/>
